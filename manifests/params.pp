@@ -56,6 +56,7 @@ class lxc::params {
   $lxc_networking_nat_max_hosts      = '253'
   $lxc_networking_nat_update_dnsmasq = false
   $lxc_networking_nat_dnsmasq_conf   = '/etc/dnsmasq.d/lxc'
+  $lxc_default_containers            = {}
   $network_default_conf              = '/etc/lxc/default.conf'
   $network_nat_conf                  = '/etc/default/lxc-net'
   $network_nat_service               = 'lxc-net'

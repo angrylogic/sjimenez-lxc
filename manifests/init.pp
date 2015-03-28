@@ -82,6 +82,9 @@
 #   will be modified with $lxc_networking_nat_bridge value. Default
 #   /etc/dnsmasq.d/lxc.
 #
+# [*lxc_default_containers*]
+#   Default containers that should be created.
+#
 # === Examples
 #
 #  include lxc
@@ -119,7 +122,8 @@ class lxc (
   $lxc_networking_nat_dhcp_conf      = undef,
   $lxc_networking_nat_dhcp_options   = undef,
   $lxc_networking_nat_update_dnsmasq = $lxc::params::lxc_networking_nat_update_dnsmasq,
-  $lxc_networking_nat_dnsmasq_conf   = $lxc::params::lxc_networking_nat_dnsmasq_conf
+  $lxc_networking_nat_dnsmasq_conf   = $lxc::params::lxc_networking_nat_dnsmasq_conf,
+  $lxc_default_containers            = $lxc::params::lxc_default_containers
 ) inherits lxc::params {
 
   contain 'lxc::install'
@@ -131,4 +135,6 @@ class lxc (
   Class['lxc::service'] ->
   Class['lxc::networking::containers'] ->
   Class['lxc::networking::nat']
+
+  create_resources(lxc::container, $lxc_default_containers)
 }
