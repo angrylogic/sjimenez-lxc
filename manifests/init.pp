@@ -136,5 +136,5 @@ class lxc (
   Class['lxc::networking::containers'] ->
   Class['lxc::networking::nat']
 
-  create_resources(lxc::container, $lxc_default_containers)
+  create_resources(lxc, $lxc_default_containers)
 }
