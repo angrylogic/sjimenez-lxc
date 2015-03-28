@@ -16,14 +16,13 @@ class lxc::params {
       case $::lsbdistcodename {
         'trusty': {
           $lxc_ruby_bindings_gem_deps = [
-            'build-essential', 'ruby-dev', 'lxc-dev', 'libcgmanager0'
+            'build-essential', 'lxc-dev', 'libcgmanager0'
           ]
         }
         'precise': {
           contain 'lxc::sources::precise'
           $lxc_ruby_bindings_gem_deps = [
-            'build-essential', 'ruby-dev', 'lxc-dev', 'libcgmanager0',
-            'rubygems'
+            'build-essential', 'lxc-dev', 'libcgmanager0'
           ]
         }
         default: {

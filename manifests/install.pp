@@ -14,6 +14,9 @@ class lxc::install inherits lxc::params {
 
   private()
 
+  include ::ruby
+  include ::ruby::dev
+
   $lxc_ruby_bindings_deps = $lxc::lxc_ruby_bindings_provider ? {
     gem     => $lxc::params::lxc_ruby_bindings_gem_deps,
     default => ['']
@@ -34,6 +37,6 @@ class lxc::install inherits lxc::params {
     ensure   => $lxc::lxc_ruby_bindings_version,
     name     => $lxc::lxc_ruby_bindings_package,
     provider => $lxc::lxc_ruby_bindings_provider,
-    require  => Package[$lxc::lxc_lxc_package, $lxc_ruby_bindings_deps],
+    require  => [Package[$lxc::lxc_lxc_package,$lxc_ruby_bindings_deps], Class["ruby::dev"]],
   }
 }
